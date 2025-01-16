@@ -7,13 +7,14 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.function.Function;
-
-public class JwtServiceImpl implements JwtSerices{
+@Service
+public class JwtServiceImpl implements JwtServices {
     @Value("${token.signing.key.local}")
     private String jwtSigningKey;
 
@@ -38,7 +39,7 @@ public class JwtServiceImpl implements JwtSerices{
        }
        return false;
     }
-
+    @Override
     public boolean isTokenExpired(String token) {
         Date expiration = getClaimFromJWT(token, Claims::getExpiration);
         if (expiration.after(new Date(System.currentTimeMillis()))) {

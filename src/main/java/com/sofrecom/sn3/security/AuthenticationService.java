@@ -8,6 +8,6 @@ public interface AuthenticationService {
 
     AuthenticationDto signUp(UserDto userDto);
     AuthenticationDto signIn(SignInRequest signInRequest);
-    UserDto createNewUser(UserDto userDto);
+   // UserDto createNewUser(UserDto userDto);
 
 }

@@ -1,5 +1,8 @@
 package com.sofrecom.sn3.entities.DTO;
 
+import lombok.Builder;
+
+@Builder
 public class AuthenticationDto {
 
     String token;

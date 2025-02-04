@@ -20,10 +20,11 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     public final JwtServices jwtServices;
-    public UserService userService;
+    public final UserService userService;
 
-    public JwtAuthenticationFilter(JwtServices jwtServices) {
+    public JwtAuthenticationFilter(JwtServices jwtServices, UserService userService) {
         this.jwtServices = jwtServices;
+        this.userService = userService;
     }
 
     @Override
@@ -31,8 +32,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
-        if (StringUtils.isEmpty(authHeader) && !authHeader.startsWith("Bearer ")) {
+        if (StringUtils.isEmpty(authHeader) || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
+            return;
         }
         jwt = authHeader.substring(7);
         userEmail = jwtServices.extractUserNameFromJWT(jwt);

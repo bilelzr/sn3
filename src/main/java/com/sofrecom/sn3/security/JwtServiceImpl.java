@@ -33,12 +33,10 @@ public class JwtServiceImpl implements JwtServices {
 
     @Override
     public boolean isTokenValid(String token, UserDetails userDetails) {
-       String username= extractUserNameFromJWT(token);
-       if (username.equals(userDetails.getUsername()) && isTokenExpired(token)) {
-           return true;
-       }
-       return false;
+        String username = extractUserNameFromJWT(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+
     @Override
     public boolean isTokenExpired(String token) {
         Date expiration = getClaimFromJWT(token, Claims::getExpiration);

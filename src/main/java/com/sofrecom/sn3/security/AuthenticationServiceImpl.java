@@ -35,19 +35,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (user != null) {
             throw new UserAlreadyExistsException("Email already used!");
         }
-        User userToPersist = User.builder()
-                .email(userDto.getEmail())
-                .password(passwordEncoder.encode(userDto.getPassword()))
-                .firstName(userDto.getFirstName())
-                .lastName(userDto.getLastName())
-                .phone(userDto.getPhone())
-                .role(Role.ADMIN)
-                .build();
+        User userToPersist = new User();
+        userToPersist.setEmail(userDto.getEmail());
+        userToPersist.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        userToPersist.setFirstName(userDto.getFirstName());
+        userToPersist.setLastName(userDto.getLastName());
+        userToPersist.setPhone(userDto.getPhone());
+        userToPersist.setRole(Role.ADMIN);
+
         userRepository.save(userToPersist);
         String token = jwtServices.generateToken(userToPersist);
-        AuthenticationDto authenticationDto= AuthenticationDto.builder()
-                .token(token)
-                .build();
+        AuthenticationDto authenticationDto = new AuthenticationDto();
+        authenticationDto.setToken(token);
+
         return authenticationDto;
     }
 
@@ -63,9 +63,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new UserNotFoundException("User not found!");
         }
         String token = jwtServices.generateToken(user);
-        AuthenticationDto authenticationDto= AuthenticationDto.builder()
-                .token(token)
-                .build();
+        AuthenticationDto authenticationDto = new AuthenticationDto();
+        authenticationDto.setToken(token);
+
         return authenticationDto;
     }
 }

@@ -2,7 +2,6 @@ package com.sofrecom.sn3.entities.DTO;
 
 import lombok.Builder;
 
-@Builder
 public class UserDto {
     private String firstName;
     private String lastName;

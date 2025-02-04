@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Objects;
 
 
-@Builder
 @Entity
 @Table(name = "user_sn3")
 public class User implements UserDetails {

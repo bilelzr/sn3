@@ -2,6 +2,8 @@ package com.sofrecom.sn3.entities.DTO;
 
 import lombok.Builder;
 
+import java.util.UUID;
+
 public class UserDto {
     private String firstName;
     private String lastName;
@@ -10,6 +12,7 @@ public class UserDto {
     private String phone;
     private String role;
     private boolean accountNonLocked;
+    private UUID uuid;
 
 
     public UserDto() {
@@ -23,6 +26,25 @@ public class UserDto {
         this.phone = phone;
         this.role = role;
         this.accountNonLocked = accountNonLocked;
+    }
+
+    public UserDto(String firstName, String lastName, String email, String password, String phone, String role, boolean accountNonLocked, UUID uuid) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+        this.accountNonLocked = accountNonLocked;
+        this.uuid = uuid;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getFirstName() {

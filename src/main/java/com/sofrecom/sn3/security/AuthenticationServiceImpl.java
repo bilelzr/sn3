@@ -15,6 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
 
@@ -42,6 +44,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         userToPersist.setLastName(userDto.getLastName());
         userToPersist.setPhone(userDto.getPhone());
         userToPersist.setRole(Role.ADMIN);
+        userToPersist.setUuid(UUID.randomUUID());
 
         userRepository.save(userToPersist);
         String token = jwtServices.generateToken(userToPersist);

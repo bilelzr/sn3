@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 
 @Entity
@@ -27,6 +28,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
     private boolean accountNonLocked = true;
+    @ManyToMany(mappedBy = "membres") // This avoids duplicate join tables
+    private List<Group> groups;
+    private UUID uuid;
 
     public User() {
     }
@@ -42,6 +46,18 @@ public class User implements UserDetails {
         this.accountNonLocked = accountNonLocked;
     }
 
+    public User(long userPkId, String firstName, String lastName, String email, String password, String phone, Role role, boolean accountNonLocked, List<Group> groups) {
+        this.userPkId = userPkId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+        this.accountNonLocked = accountNonLocked;
+        this.groups = groups;
+    }
+
     public User(String firstName, String lastName, String email, String password, Role role, String phone, boolean accountNonLocked) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -50,6 +66,19 @@ public class User implements UserDetails {
         this.role = role;
         this.phone = phone;
         this.accountNonLocked = accountNonLocked;
+    }
+
+    public User(long userPkId, String firstName, String lastName, String email, String password, String phone, Role role, boolean accountNonLocked, List<Group> groups, UUID uuid) {
+        this.userPkId = userPkId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+        this.accountNonLocked = accountNonLocked;
+        this.groups = groups;
+        this.uuid = uuid;
     }
 
     public long getUserPkId() {
@@ -107,6 +136,14 @@ public class User implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     @Override
@@ -170,5 +207,11 @@ public class User implements UserDetails {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
+    public List<Group> getGroups() {
+        return groups;
+    }
 
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
 }

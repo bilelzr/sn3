@@ -4,7 +4,11 @@ package com.sofrecom.sn3.services;
 import com.sofrecom.sn3.entities.DTO.group.GroupDtoRequest;
 import com.sofrecom.sn3.entities.DTO.group.GroupDtoResponse;
 import com.sofrecom.sn3.entities.Group;
+import com.sofrecom.sn3.entities.User;
+import com.sofrecom.sn3.exceptions.AffectationException;
+import com.sofrecom.sn3.exceptions.GroupNotFoundException;
 import com.sofrecom.sn3.repositories.GroupRepository;
+import com.sofrecom.sn3.repositories.UserRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +21,11 @@ public class GroupServiceImpl implements GroupService {
 
 
     private final GroupRepository groupRepository;
+    private final UserRepository userRepository;
 
-    public GroupServiceImpl(GroupRepository groupRepository) {
+    public GroupServiceImpl(GroupRepository groupRepository, UserRepository userRepository) {
         this.groupRepository = groupRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -38,33 +44,63 @@ public class GroupServiceImpl implements GroupService {
             GroupDtoResponse groupDtoResponse = new GroupDtoResponse();
             groupDtoResponse.setGroupName(group.getGroupName());
             groupDtoResponse.setUuid(group.getUuid());
-           // TODO// groupDtoResponse.setMembres(group.getMembres());
+            groupDtoResponse.setMembres(DtoConverter.convertListUserToDto(group.getMembres()));
+            groupDtoResponseList.add(groupDtoResponse);
+
         });
-        return List.of();
+        return groupDtoResponseList;
     }
 
     @Override
     public GroupDtoResponse getGroupByName(String groupName) {
-        return null;
+        Group group = groupRepository.findByName(groupName);
+        return DtoConverter.convertGroupToDto(group);
     }
 
     @Override
     public GroupDtoResponse modifyGroup(String groupName, GroupDtoRequest groupDtoRequest) {
-        return null;
+        Group groupToModify = groupRepository.findByName(groupName);
+        if (groupToModify != null) {
+            groupToModify.setGroupName(groupDtoRequest.getGroupName());
+            groupRepository.save(groupToModify);
+            return DtoConverter.convertGroupToDto(groupToModify);
+        }
+        throw new GroupNotFoundException("Group not found");
     }
 
     @Override
-    public void deleteGroup(String groupName) {
-
+    public boolean deleteGroup(String groupName) {
+            Group groupToDelete = groupRepository.findByName(groupName);
+            if (groupToDelete != null) {
+                groupRepository.delete(groupToDelete);
+                return true;
+            }
+            return false;
     }
 
     @Override
     public void affectMultiUserToGroup(List<UUID> uuidUsers, String groupName) {
+        List<User> usersToAffect = userRepository.findByUuids(uuidUsers);
+        Group group = groupRepository.findByName(groupName);
+        if (!usersToAffect.isEmpty() && group != null) {
+            group.setMembres(usersToAffect);
+            groupRepository.save(group);
+        }
+        throw new AffectationException("Group or user not found");
 
     }
 
     @Override
     public void removeMultiUserFromGroup(List<UUID> uuidUsers, String groupName) {
 
+        List<User> usersToRemove = userRepository.findByUuids(uuidUsers);
+        Group group = groupRepository.findByName(groupName);
+        if (!usersToRemove.isEmpty() && group != null) {
+            List<User> existedUsers = group.getMembres();
+            existedUsers.removeAll(usersToRemove);
+            group.setMembres(existedUsers);
+            groupRepository.save(group);
+        }
+        throw new AffectationException("Group or user not found");
     }
 }

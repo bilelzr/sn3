@@ -8,7 +8,7 @@ import com.sofrecom.sn3.entities.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tools {
+public class DtoConverter {
 
     public static GroupDtoResponse convertGroupToDto(Group group) {
         GroupDtoResponse dto = new GroupDtoResponse();

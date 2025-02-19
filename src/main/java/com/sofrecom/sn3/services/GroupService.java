@@ -17,7 +17,7 @@ public interface GroupService {
 
    GroupDtoResponse modifyGroup(String groupName, GroupDtoRequest groupDtoRequest);
 
-   void deleteGroup(String groupName);
+   boolean deleteGroup(String groupName);
 
    void affectMultiUserToGroup(List<UUID> uuidUsers, String groupName);
 

@@ -29,7 +29,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public void addUGroup(GroupDtoRequest groupDtoRequest) {
+    public void addGroup(GroupDtoRequest groupDtoRequest) {
         Group group = new Group();
         group.setGroupName(groupDtoRequest.getGroupName());
         group.setUuid(UUID.randomUUID());

@@ -1,5 +1,6 @@
 package com.sofrecom.sn3.services;
 
+import com.sofrecom.sn3.entities.DTO.UserDto;
 import com.sofrecom.sn3.entities.User;
 import com.sofrecom.sn3.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,20 +22,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllUsers() {
+    public List<UserDto> findAllUsers() {
         List<User> users = userRepository.findAll();
-        return users;
+        return DtoConverter.convertListUserToDto(users);
     }
 
     @Override
-    public User findUserByEmail(String email) {
+    public UserDto findUserByEmail(String email) {
         User user = userRepository.findByEmail(email);
-        return user;
+        return DtoConverter.convertUserToDto(user);
     }
 
     @Override
     public boolean deleteUser(User user) {
-        User userToDelete = findUserByEmail(user.getEmail());
+        User userToDelete = userRepository.findByEmail(user.getEmail());
         if (userToDelete != null) {
             userRepository.delete(userToDelete);
             return true;
@@ -44,9 +45,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean lockUserAccount(String email) {
-        User userToLock = findUserByEmail(email);
+        User userToLock = userRepository.findByEmail(email);
         if (userToLock != null) {
-           userToLock.setAccountNonLocked(false);
+            userToLock.setAccountNonLocked(false);
            userRepository.save(userToLock);
            return true;
         }

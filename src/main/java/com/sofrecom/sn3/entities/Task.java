@@ -1,10 +1,10 @@
 package com.sofrecom.sn3.entities;
+
 import com.sofrecom.sn3.entities.enumeration.Priority;
 import com.sofrecom.sn3.entities.enumeration.Status;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity

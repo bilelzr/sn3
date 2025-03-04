@@ -9,7 +9,6 @@ import com.sofrecom.sn3.exceptions.AffectationException;
 import com.sofrecom.sn3.exceptions.GroupNotFoundException;
 import com.sofrecom.sn3.repositories.GroupRepository;
 import com.sofrecom.sn3.repositories.UserRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

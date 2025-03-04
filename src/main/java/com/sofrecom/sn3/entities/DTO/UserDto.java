@@ -1,7 +1,5 @@
 package com.sofrecom.sn3.entities.DTO;
 
-import lombok.Builder;
-
 import java.util.UUID;
 
 public class UserDto {

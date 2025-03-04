@@ -1,7 +1,5 @@
 package com.sofrecom.sn3.entities.DTO.task;
 
-import com.sofrecom.sn3.entities.User;
-
 import java.time.LocalDate;
 
 public class TaskDtoRequest {

@@ -1,10 +1,8 @@
 package com.sofrecom.sn3.controller;
 
-import com.sofrecom.sn3.entities.DTO.UserDto;
 import com.sofrecom.sn3.entities.DTO.group.GroupDtoRequest;
 import com.sofrecom.sn3.entities.DTO.group.GroupDtoResponse;
 import com.sofrecom.sn3.services.GroupService;
-import com.sofrecom.sn3.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

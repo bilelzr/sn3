@@ -2,7 +2,6 @@ package com.sofrecom.sn3.entities;
 
 import jakarta.persistence.*;
 
-import java.rmi.server.UID;
 import java.util.List;
 import java.util.UUID;
 

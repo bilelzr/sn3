@@ -1,9 +1,7 @@
 package com.sofrecom.sn3.entities.DTO.task;
 
 import com.sofrecom.sn3.entities.DTO.UserDto;
-import com.sofrecom.sn3.entities.User;
 import com.sofrecom.sn3.entities.enumeration.Priority;
-import com.sofrecom.sn3.entities.enumeration.Status;
 
 import java.time.LocalDate;
 import java.util.UUID;

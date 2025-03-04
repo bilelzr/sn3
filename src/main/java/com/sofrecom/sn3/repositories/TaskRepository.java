@@ -1,6 +1,5 @@
 package com.sofrecom.sn3.repositories;
 
-import com.sofrecom.sn3.entities.Group;
 import com.sofrecom.sn3.entities.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

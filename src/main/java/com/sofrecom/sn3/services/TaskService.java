@@ -1,7 +1,5 @@
 package com.sofrecom.sn3.services;
 
-import com.sofrecom.sn3.entities.DTO.group.GroupDtoRequest;
-import com.sofrecom.sn3.entities.DTO.group.GroupDtoResponse;
 import com.sofrecom.sn3.entities.DTO.task.TaskDtoRequest;
 import com.sofrecom.sn3.entities.DTO.task.TaskDtoResponse;
 

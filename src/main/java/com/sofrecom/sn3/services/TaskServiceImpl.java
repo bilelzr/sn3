@@ -1,16 +1,12 @@
 package com.sofrecom.sn3.services;
 
-import com.sofrecom.sn3.entities.DTO.group.GroupDtoRequest;
-import com.sofrecom.sn3.entities.DTO.group.GroupDtoResponse;
 import com.sofrecom.sn3.entities.DTO.task.TaskDtoRequest;
 import com.sofrecom.sn3.entities.DTO.task.TaskDtoResponse;
-import com.sofrecom.sn3.entities.Group;
 import com.sofrecom.sn3.entities.Task;
 import com.sofrecom.sn3.entities.User;
 import com.sofrecom.sn3.entities.enumeration.Priority;
 import com.sofrecom.sn3.entities.enumeration.Status;
 import com.sofrecom.sn3.exceptions.AffectationException;
-import com.sofrecom.sn3.exceptions.GroupNotFoundException;
 import com.sofrecom.sn3.exceptions.TaskException;
 import com.sofrecom.sn3.exceptions.UserNotFoundException;
 import com.sofrecom.sn3.repositories.TaskRepository;

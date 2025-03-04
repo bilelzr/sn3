@@ -19,7 +19,6 @@ import java.util.UUID;
 @Service
 public class GroupServiceImpl implements GroupService {
 
-
     private final GroupRepository groupRepository;
     private final UserRepository userRepository;
 

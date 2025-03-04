@@ -1,15 +1,12 @@
 package com.sofrecom.sn3.entities;
 
+import com.sofrecom.sn3.entities.enumeration.Role;
 import jakarta.persistence.*;
-import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 
 @Entity
@@ -31,8 +28,32 @@ public class User implements UserDetails {
     @ManyToMany(mappedBy = "membres") // This avoids duplicate join tables
     private List<Group> groups;
     private UUID uuid;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks = new ArrayList<>();
+
+    public User(long userPkId, String firstName, String lastName, String email, String password, String phone, Role role, boolean accountNonLocked, List<Group> groups, UUID uuid, List<Task> tasks) {
+        this.userPkId = userPkId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+        this.accountNonLocked = accountNonLocked;
+        this.groups = groups;
+        this.uuid = uuid;
+        this.tasks = tasks;
+    }
 
     public User() {
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public User(long userPkId, String firstName, String lastName, String email, String password, String phone, Role role, boolean accountNonLocked) {

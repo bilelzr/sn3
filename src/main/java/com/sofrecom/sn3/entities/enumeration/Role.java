@@ -1,4 +1,4 @@
-package com.sofrecom.sn3.entities;
+package com.sofrecom.sn3.entities.enumeration;
 
 public enum Role {
     RDP,

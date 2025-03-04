@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select user from User user where user.uuid in :uuid")
     List<User> findByUuids(List<UUID> uuids);
+
+    User findByUuid(UUID uuid);
 }

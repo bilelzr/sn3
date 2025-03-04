@@ -2,7 +2,9 @@ package com.sofrecom.sn3.services;
 
 import com.sofrecom.sn3.entities.DTO.UserDto;
 import com.sofrecom.sn3.entities.DTO.group.GroupDtoResponse;
+import com.sofrecom.sn3.entities.DTO.task.TaskDtoResponse;
 import com.sofrecom.sn3.entities.Group;
+import com.sofrecom.sn3.entities.Task;
 import com.sofrecom.sn3.entities.User;
 
 import java.util.ArrayList;
@@ -10,6 +12,22 @@ import java.util.List;
 
 public class DtoConverter {
 
+    public static TaskDtoResponse convertTaskToDto(Task task) {
+        TaskDtoResponse dto = new TaskDtoResponse();
+        dto.setTaskDescription(task.getTaskDescription());
+        dto.setTaskName(task.getTaskName());
+        dto.setPorteur(convertUserToDto(task.getPorteur()));
+        dto.setPriority(task.getPriority());
+        dto.setCreatedAt(task.getCreatedAt());
+        dto.setLastModifiedAt(task.getLastModifiedAt());
+        dto.setUuid(task.getUuid());
+        return dto;
+    }
+    public static List<TaskDtoResponse> convertTaskToDto(List<Task> tasks) {
+        List<TaskDtoResponse> taskDtoResponseList = new ArrayList<>();
+        tasks.forEach(task -> taskDtoResponseList.add(convertTaskToDto(task)));
+        return taskDtoResponseList;
+    }
     public static GroupDtoResponse convertGroupToDto(Group group) {
         GroupDtoResponse dto = new GroupDtoResponse();
         dto.setUuid(group.getUuid());
@@ -40,6 +58,7 @@ public class DtoConverter {
         users.forEach(user -> userDtoList.add(convertUserToDto(user)));
         return userDtoList;
     }
+
 
 
 }

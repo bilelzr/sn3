@@ -25,6 +25,8 @@ public class Group {
     private UUID uuid;
 
 
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    private List<Application> applications ;
 
     public Group() {
     }

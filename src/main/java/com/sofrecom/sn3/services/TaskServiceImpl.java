@@ -38,7 +38,7 @@ public class TaskServiceImpl implements TaskService {
         Task task = new Task();
         task.setTaskName(taskDtoRequest.getTaskName());
         task.setTaskDescription(taskDtoRequest.getTaskDescription());
-        task.setEcheance(taskDtoRequest.getEcheance());
+        task.setDeadline(taskDtoRequest.getEcheance());
         task.setStatus(Status.valueOf(taskDtoRequest.getStatus()));
         task.setPriority(Priority.valueOf(taskDtoRequest.getPriority()));
         task.setUuid(UUID.randomUUID());
@@ -72,7 +72,7 @@ public class TaskServiceImpl implements TaskService {
         if (taskToModify != null) {
             taskToModify.setTaskName(taskDtoRequest.getTaskName());
             taskToModify.setTaskDescription(taskDtoRequest.getTaskDescription());
-            taskToModify.setEcheance(taskDtoRequest.getEcheance());
+            taskToModify.setDeadline(taskDtoRequest.getEcheance());
             taskToModify.setStatus(Status.valueOf(taskDtoRequest.getStatus()));
             taskToModify.setPriority(Priority.valueOf(taskDtoRequest.getPriority()));
             taskToModify.setLastModifiedAt(LocalDate.now());

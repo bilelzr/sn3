@@ -16,6 +16,15 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1, initialValue = 1)
     private long userPkId;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_application", // Join table for the Many-to-Many relationship
+            joinColumns = @JoinColumn(name = "user_pk_id"),
+            inverseJoinColumns = @JoinColumn(name = "application_pk_id")
+    )
+    private List<Application> applications; // The applications to which the user is assigned
+
     private String firstName;
     private String lastName;
     @Column(unique = true)
@@ -54,6 +63,14 @@ public class User implements UserDetails {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
     public User(long userPkId, String firstName, String lastName, String email, String password, String phone, Role role, boolean accountNonLocked) {

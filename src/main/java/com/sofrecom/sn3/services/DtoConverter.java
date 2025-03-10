@@ -1,6 +1,8 @@
 package com.sofrecom.sn3.services;
 
+import com.sofrecom.sn3.entities.Application;
 import com.sofrecom.sn3.entities.DTO.UserDto;
+import com.sofrecom.sn3.entities.DTO.applictaion.ApplicationDtoResponse;
 import com.sofrecom.sn3.entities.DTO.group.GroupDtoResponse;
 import com.sofrecom.sn3.entities.DTO.task.TaskDtoResponse;
 import com.sofrecom.sn3.entities.Group;
@@ -32,6 +34,13 @@ public class DtoConverter {
         GroupDtoResponse dto = new GroupDtoResponse();
         dto.setUuid(group.getUuid());
         dto.setGroupName(group.getGroupName());
+        //dto.setMembres();
+        return dto;
+    }
+    public static ApplicationDtoResponse convertAppToDto(Application application) {
+        ApplicationDtoResponse dto = new ApplicationDtoResponse();
+        dto.setApplicationDescription(application.getApplicationDescription());
+        dto.setApplicationName(application.getApplicationName());
         //dto.setMembres();
         return dto;
     }

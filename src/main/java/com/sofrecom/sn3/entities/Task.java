@@ -16,17 +16,20 @@ public class Task {
     private long taskPkId;
     @Column(unique = true, nullable = false)
     private String taskName;
+
     @ManyToOne
-    @JoinColumn(name = "user_pk_id", nullable = false) // Foreign key column in the task table
+    @JoinColumn(name = "porteur_user_pk_id", nullable = false) // Foreign key column for porteur
     private User porteur;
+
     @ManyToOne
-    @JoinColumn(name = "user_pk_id", nullable = false) // Foreign key column in the task table
+    @JoinColumn(name = "created_by_user_pk_id", nullable = false) // Foreign key column for createdBy
     private User createdBy;
+    // Foreign key column in the task table
     private UUID uuid;
     private String taskDescription;
     private Priority priority;
     private Status status;
-    private LocalDate echeance;
+    private LocalDate deadline;
     private LocalDate createdAt;
     private LocalDate lastModifiedAt;
 
@@ -34,7 +37,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(long taskPkId, String taskName, User porteur, User createdBy, UUID uuid, String taskDescription, Priority priority, Status status, LocalDate echeance, LocalDate createdAt, LocalDate lastModifiedAt) {
+    public Task(long taskPkId, String taskName, User porteur, User createdBy, UUID uuid, String taskDescription, Priority priority, Status status, LocalDate deadline, LocalDate createdAt, LocalDate lastModifiedAt) {
         this.taskPkId = taskPkId;
         this.taskName = taskName;
         this.porteur = porteur;
@@ -43,7 +46,7 @@ public class Task {
         this.taskDescription = taskDescription;
         this.priority = priority;
         this.status = status;
-        this.echeance = echeance;
+        this.deadline = deadline;
         this.createdAt = createdAt;
         this.lastModifiedAt = lastModifiedAt;
     }
@@ -56,12 +59,12 @@ public class Task {
         this.createdBy = createdBy;
     }
 
-    public void setEcheance(LocalDate echeance) {
-        this.echeance = echeance;
+    public LocalDate getDeadline() {
+        return deadline;
     }
 
-    public LocalDate getEcheance() {
-        return echeance;
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
     }
 
     public LocalDate getCreatedAt() {

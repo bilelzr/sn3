@@ -33,8 +33,10 @@ public class UserController {
     public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok().body(userService.findAllUsers());
     }
-    @GetMapping("/byname/{taskName}")
-    public ResponseEntity<TaskDtoResponse> getTaskByName(@PathVariable String taskName){
-        return ResponseEntity.ok().body(taskService.getTaskByName(taskName));
-    }
+
+
+    //@GetMapping("/byname/{taskName}")
+    //public ResponseEntity<TaskDtoResponse> getTaskByName(@PathVariable String taskName){
+      //  return ResponseEntity.ok().body(taskService.getTaskByName(taskName));
+    //}
 }

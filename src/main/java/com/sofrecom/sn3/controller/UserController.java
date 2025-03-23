@@ -8,11 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/user")
-
 public class UserController {
 
     private final UserService userService;
@@ -34,9 +32,9 @@ public class UserController {
         return ResponseEntity.ok().body(userService.findAllUsers());
     }
 
+    @GetMapping("/findByEmail/{email}")
+    public ResponseEntity<UserDto> findByEmail(@PathVariable("email") String email) {
+        return ResponseEntity.ok().body(userService.findUserByEmail(email));
+    }
 
-    //@GetMapping("/byname/{taskName}")
-    //public ResponseEntity<TaskDtoResponse> getTaskByName(@PathVariable String taskName){
-    //  return ResponseEntity.ok().body(taskService.getTaskByName(taskName));
-    //}
 }

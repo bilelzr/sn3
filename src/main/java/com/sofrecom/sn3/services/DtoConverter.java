@@ -8,6 +8,7 @@ import com.sofrecom.sn3.entities.DTO.task.TaskDtoResponse;
 import com.sofrecom.sn3.entities.Group;
 import com.sofrecom.sn3.entities.Task;
 import com.sofrecom.sn3.entities.User;
+import com.sofrecom.sn3.entities.enumeration.Role;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,7 @@ public class DtoConverter {
         userDto.setLastName(user.getLastName());
         userDto.setEmail(user.getEmail());
         userDto.setPassword(user.getPassword());
+        userDto.setRole(user.getRole().toString());
         userDto.setPhone(user.getPhone());
         userDto.setAccountNonLocked(user.isAccountNonLocked());
         return userDto;

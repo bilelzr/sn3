@@ -5,10 +5,9 @@ import com.sofrecom.sn3.entities.DTO.UserDto;
 import com.sofrecom.sn3.security.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/auth")
 @RestController
-@CrossOrigin(origins = "*")
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 

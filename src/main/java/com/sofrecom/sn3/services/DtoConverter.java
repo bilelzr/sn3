@@ -25,11 +25,13 @@ public class DtoConverter {
         dto.setUuid(task.getUuid());
         return dto;
     }
+
     public static List<TaskDtoResponse> convertTaskToDto(List<Task> tasks) {
         List<TaskDtoResponse> taskDtoResponseList = new ArrayList<>();
         tasks.forEach(task -> taskDtoResponseList.add(convertTaskToDto(task)));
         return taskDtoResponseList;
     }
+
     public static GroupDtoResponse convertGroupToDto(Group group) {
         GroupDtoResponse dto = new GroupDtoResponse();
         dto.setUuid(group.getUuid());
@@ -37,6 +39,7 @@ public class DtoConverter {
         //dto.setMembres();
         return dto;
     }
+
     public static ApplicationDtoResponse convertAppToDto(Application application) {
         ApplicationDtoResponse dto = new ApplicationDtoResponse();
         dto.setApplicationDescription(application.getApplicationDescription());
@@ -45,11 +48,12 @@ public class DtoConverter {
         return dto;
     }
 
-    public static List<GroupDtoResponse> convertListGroupToDto (List<Group> groups) {
+    public static List<GroupDtoResponse> convertListGroupToDto(List<Group> groups) {
         List<GroupDtoResponse> groupDtoResponseList = new ArrayList<>();
         groups.forEach(group -> groupDtoResponseList.add(convertGroupToDto(group)));
         return groupDtoResponseList;
     }
+
     public static UserDto convertUserToDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setUuid(user.getUuid());
@@ -62,12 +66,11 @@ public class DtoConverter {
         return userDto;
     }
 
-    public static List<UserDto> convertListUserToDto (List<User> users) {
+    public static List<UserDto> convertListUserToDto(List<User> users) {
         List<UserDto> userDtoList = new ArrayList<>();
         users.forEach(user -> userDtoList.add(convertUserToDto(user)));
         return userDtoList;
     }
-
 
 
 }

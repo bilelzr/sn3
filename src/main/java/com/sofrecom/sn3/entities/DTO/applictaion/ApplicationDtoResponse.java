@@ -1,18 +1,17 @@
 package com.sofrecom.sn3.entities.DTO.applictaion;
 
-import com.sofrecom.sn3.entities.DTO.UserDto;
-
-import java.util.List;
+import com.sofrecom.sn3.entities.DTO.group.GroupDtoResponse;
 
 public class ApplicationDtoResponse {
 
 
-    private List<UserDto> applicationMembers;
+    private GroupDtoResponse group;
     private String applicationName;
     private String applicationDescription;
 
-    public ApplicationDtoResponse(List<UserDto> applicationMembers, String applicationName, String applicationDescription) {
-        this.applicationMembers = applicationMembers;
+
+    public ApplicationDtoResponse(GroupDtoResponse group, String applicationName, String applicationDescription) {
+        this.group = group;
         this.applicationName = applicationName;
         this.applicationDescription = applicationDescription;
     }
@@ -21,12 +20,12 @@ public class ApplicationDtoResponse {
     }
 
 
-    public List<UserDto> getApplicationMembers() {
-        return applicationMembers;
+    public GroupDtoResponse getGroup() {
+        return group;
     }
 
-    public void setApplicationMembers(List<UserDto> applicationMembers) {
-        this.applicationMembers = applicationMembers;
+    public void setGroup(GroupDtoResponse group) {
+        this.group = group;
     }
 
     public String getApplicationName() {

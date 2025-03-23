@@ -26,6 +26,7 @@ public class AuthenticationController {
     public ResponseEntity signUp(@RequestBody UserDto userDto) {
         return ResponseEntity.ok(authenticationService.signUp(userDto));
     }
+
     @GetMapping
     public String test() {
         return "test";

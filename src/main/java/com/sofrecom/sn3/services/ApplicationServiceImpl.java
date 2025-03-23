@@ -3,11 +3,8 @@ package com.sofrecom.sn3.services;
 import com.sofrecom.sn3.entities.Application;
 import com.sofrecom.sn3.entities.DTO.applictaion.ApplicationDtoRequest;
 import com.sofrecom.sn3.entities.DTO.applictaion.ApplicationDtoResponse;
-import com.sofrecom.sn3.entities.DTO.group.GroupDtoResponse;
 import com.sofrecom.sn3.entities.Group;
-import com.sofrecom.sn3.entities.User;
 import com.sofrecom.sn3.exceptions.AffectationException;
-import com.sofrecom.sn3.exceptions.GroupNotFoundException;
 import com.sofrecom.sn3.repositories.ApplicationRepository;
 import com.sofrecom.sn3.repositories.GroupRepository;
 import com.sofrecom.sn3.repositories.UserRepository;
@@ -22,15 +19,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 
     private final ApplicationRepository applicationRepository;
-    private final UserRepository userRepository;
     private final GroupRepository groupRepository;
-    private final ApplicationDtoResponse applicationDtoResponse;
 
-    public ApplicationServiceImpl(ApplicationRepository applicationRepository, UserRepository userRepository, GroupRepository groupRepository, ApplicationDtoResponse applicationDtoResponse) {
+    public ApplicationServiceImpl(ApplicationRepository applicationRepository, GroupRepository groupRepository) {
         this.applicationRepository = applicationRepository;
-        this.userRepository = userRepository;
         this.groupRepository = groupRepository;
-        this.applicationDtoResponse = applicationDtoResponse;
     }
 
     @Override
@@ -44,8 +37,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public ApplicationDtoResponse getApplicationByName(String applicationName) {
-       Application application = applicationRepository.findByName(applicationName);
-       return DtoConverter.convertAppToDto(application);
+        Application application = applicationRepository.findByName(applicationName);
+        return DtoConverter.convertAppToDto(application);
     }
 
     @Override
@@ -57,7 +50,7 @@ public class ApplicationServiceImpl implements ApplicationService {
             ApplicationDtoResponse applicationDtoResponse = new ApplicationDtoResponse();
             applicationDtoResponse.setApplicationName(application.getApplicationName());
             applicationDtoResponse.setApplicationDescription(application.getApplicationDescription());
-            applicationDtoResponse.setApplicationMembers(DtoConverter.convertListUserToDto(application.getGroup().getMembres()));
+            applicationDtoResponse.setGroup(DtoConverter.convertGroupToDto(application.getGroup()));
             appDtoResponseList.add(applicationDtoResponse);
 
         });
@@ -67,10 +60,11 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public ApplicationDtoResponse updateApplication(String applicationName, ApplicationDtoRequest applicationDtoRequest) {
         Application appToModify = applicationRepository.findByName(applicationName);
-        if (appToModify != null) {
+        Group group = groupRepository.findByName(applicationDtoRequest.getGroup().getGroupName());
+        if (appToModify != null && group != null) {
             appToModify.setApplicationName(applicationDtoRequest.getApplicationName());
             appToModify.setApplicationDescription(applicationDtoRequest.getApplicanDescription());
-            applicationDtoResponse.setApplicationMembers(DtoConverter.convertListUserToDto(appToModify.getGroup().getMembres()));
+            appToModify.setGroup(group);
             applicationRepository.save(appToModify);
             return DtoConverter.convertAppToDto(appToModify);
         }
@@ -88,29 +82,26 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public void assignUserToApplication(List<UUID> uuidUsers, String applicationName) {
-
-        List<User> membersToAffect = userRepository.findByUuids(uuidUsers);
+    public void assignGroupToApplication(UUID uuidGroup, String applicationName) {
+        Group groupToAffect = groupRepository.findByUuid(uuidGroup);
         Application application = applicationRepository.findByName(applicationName);
-        if (!membersToAffect.isEmpty() && application != null) {
-            application.getGroup().getMembres();
+        if (groupToAffect != null && application != null) {
+            application.setGroup(groupToAffect);
             applicationRepository.save(application);
         }
-        throw new AffectationException("App or user not found");
+        throw new AffectationException("App or group not found");
 
     }
 
     @Override
-    public void removeMultiMemberFromApp(List<UUID> uuidUsers, String applicationName) {
-        List<User> memberToRemove = userRepository.findByUuids(uuidUsers);
-            Application application = applicationRepository.findByName(applicationName);
-        if (!memberToRemove.isEmpty() && application != null) {
-            List<User> existedUsers = application.getGroup().getMembres();
-            existedUsers.removeAll(memberToRemove);
-            application.getGroup().setMembres(existedUsers);
+    public void removeGroupFromApplication(UUID uuidGroup, String applicationName) {
+        Group group = groupRepository.findByUuid(uuidGroup);
+        Application application = applicationRepository.findByName(applicationName);
+        if (group != null && application != null) {
+            application.setGroup(null);
             applicationRepository.save(application);
         }
-        throw new AffectationException("App or user not found");
+        throw new AffectationException("App or group not found");
     }
 
 

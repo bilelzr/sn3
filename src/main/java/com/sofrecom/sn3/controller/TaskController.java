@@ -22,19 +22,23 @@ public class TaskController {
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
+
     @PostMapping("/add")
     public ResponseEntity addTask(@RequestBody TaskDtoRequest taskDtoRequest) {
         taskService.addTask(taskDtoRequest);
         return ResponseEntity.ok().body("Task created successfully");
     }
+
     @GetMapping("/all")
     public ResponseEntity<List<TaskDtoResponse>> getAllTasks() {
         return ResponseEntity.ok().body(taskService.getAllTasks());
     }
+
     @GetMapping("/byname/{taskName}")
-    public ResponseEntity<TaskDtoResponse> getTaskByName(@PathVariable String taskName){
+    public ResponseEntity<TaskDtoResponse> getTaskByName(@PathVariable String taskName) {
         return ResponseEntity.ok().body(taskService.getTaskByName(taskName));
     }
+
     @PutMapping("/update/{taskName}")
     public ResponseEntity<TaskDtoResponse> modifyTask(@RequestBody TaskDtoRequest taskDtoRequest, @PathVariable String taskName) {
         return ResponseEntity.ok().body(taskService.modifyTask(taskName, taskDtoRequest));
@@ -46,15 +50,13 @@ public class TaskController {
     }
 
     @PostMapping("/adduser/{taskName}")
-    public ResponseEntity affectUserToGroup(@PathVariable String taskName, @RequestBody String uuid)
-    {
+    public ResponseEntity affectUserToGroup(@PathVariable String taskName, @RequestBody String uuid) {
         taskService.affectUserToTask(UUID.fromString(uuid), taskName);
         return ResponseEntity.ok().body("User affected successfully to task " + taskName);
     }
 
     @PostMapping("/removeuser/{taskName}")
-    public ResponseEntity removeUserFromTask(@PathVariable String taskName, @RequestBody String uuid)
-    {
+    public ResponseEntity removeUserFromTask(@PathVariable String taskName, @RequestBody String uuid) {
 
         taskService.removeUserFromTask(UUID.fromString(uuid), taskName);
         return ResponseEntity.ok().body("User removed successfully from task" + taskName);

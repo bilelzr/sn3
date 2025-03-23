@@ -13,7 +13,7 @@ public interface TaskService {
 
     List<TaskDtoResponse> getAllTasks();
 
-    TaskDtoResponse getTaskByName(String taskName );
+    TaskDtoResponse getTaskByName(String taskName);
 
     TaskDtoResponse modifyTask(String taskName, TaskDtoRequest taskDtoRequest);
 

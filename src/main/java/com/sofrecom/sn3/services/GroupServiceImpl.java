@@ -68,12 +68,12 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public boolean deleteGroup(String groupName) {
-            Group groupToDelete = groupRepository.findByName(groupName);
-            if (groupToDelete != null) {
-                groupRepository.delete(groupToDelete);
-                return true;
-            }
-            return false;
+        Group groupToDelete = groupRepository.findByName(groupName);
+        if (groupToDelete != null) {
+            groupRepository.delete(groupToDelete);
+            return true;
+        }
+        return false;
     }
 
     @Override

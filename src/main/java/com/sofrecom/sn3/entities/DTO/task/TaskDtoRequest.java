@@ -45,6 +45,10 @@ public class TaskDtoRequest {
         return taskDescription;
     }
 
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -52,11 +56,6 @@ public class TaskDtoRequest {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
-    }
-
 
     public LocalDate getEcheance() {
         return echeance;

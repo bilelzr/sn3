@@ -21,19 +21,23 @@ public class GroupController {
     public GroupController(GroupService groupService) {
         this.groupService = groupService;
     }
+
     @PostMapping("/add")
     public ResponseEntity addGroup(@RequestBody GroupDtoRequest groupDtoRequest) {
         groupService.addGroup(groupDtoRequest);
         return ResponseEntity.ok().body("Group created successfully");
     }
+
     @GetMapping("/all")
     public ResponseEntity<List<GroupDtoResponse>> getAllGroups() {
         return ResponseEntity.ok().body(groupService.getAllGroups());
     }
+
     @GetMapping("/byname/{groupName}")
-    public ResponseEntity<GroupDtoResponse> getGroupByName(@PathVariable String groupName){
+    public ResponseEntity<GroupDtoResponse> getGroupByName(@PathVariable String groupName) {
         return ResponseEntity.ok().body(groupService.getGroupByName(groupName));
     }
+
     @PutMapping("/update/{groupName}")
     public ResponseEntity<GroupDtoResponse> modifyGroup(@RequestBody GroupDtoRequest groupDtoRequest, @PathVariable String groupName) {
         return ResponseEntity.ok().body(groupService.modifyGroup(groupName, groupDtoRequest));
@@ -45,8 +49,7 @@ public class GroupController {
     }
 
     @PostMapping("/addusers/{groupName}")
-    public ResponseEntity affectMultiUserToGroup(@PathVariable String groupName, @RequestBody List<String> uuids)
-    {
+    public ResponseEntity affectMultiUserToGroup(@PathVariable String groupName, @RequestBody List<String> uuids) {
         List<UUID> uuidUsers = new ArrayList<>();
         uuids.forEach(uuid -> uuidUsers.add(UUID.fromString(uuid)));
         groupService.affectMultiUserToGroup(uuidUsers, groupName);
@@ -54,8 +57,7 @@ public class GroupController {
     }
 
     @PostMapping("/removemultiuser/{groupName}")
-    public ResponseEntity removeMultiUserFromGroup(@PathVariable String groupName, @RequestBody List<String> uuids)
-    {
+    public ResponseEntity removeMultiUserFromGroup(@PathVariable String groupName, @RequestBody List<String> uuids) {
         List<UUID> uuidUsers = new ArrayList<>();
         uuids.forEach(uuid -> uuidUsers.add(UUID.fromString(uuid)));
         groupService.removeMultiUserFromGroup(uuidUsers, groupName);

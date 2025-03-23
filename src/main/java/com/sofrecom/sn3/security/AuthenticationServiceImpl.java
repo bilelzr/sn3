@@ -24,6 +24,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtServices jwtServices;
     private final AuthenticationManager authenticationManager;
+
     public AuthenticationServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtServices jwtServices, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -60,9 +61,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 new UsernamePasswordAuthenticationToken(signInRequest.getEmail(), signInRequest.getPassword())
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String email= authentication.getName();
+        String email = authentication.getName();
         User user = userRepository.findByEmail(email);
-        if (user ==null) {
+        if (user == null) {
             throw new UserNotFoundException("User not found!");
         }
         String token = jwtServices.generateToken(user);

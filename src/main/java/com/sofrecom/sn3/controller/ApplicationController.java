@@ -7,7 +7,6 @@ import com.sofrecom.sn3.services.ApplicationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,35 +31,30 @@ public class ApplicationController {
         return ResponseEntity.ok().body(applicationService.getAllApplications());
     }
 
-    @GetMapping("/byname/{appName}")
+    @GetMapping("/byname/{applicationName}")
     public ResponseEntity<ApplicationDtoResponse> getApplicationByName(@PathVariable String applicationName) {
         return ResponseEntity.ok().body(applicationService.getApplicationByName(applicationName));
     }
-    @PutMapping("/update/{appName}")
-    public ResponseEntity<ApplicationDtoResponse> modifyApp(@RequestBody ApplicationDtoRequest applicationDtoRequest, @PathVariable String appicationName) {
-        return ResponseEntity.ok().body(applicationService.updateApplication(appicationName, applicationDtoRequest));
+
+    @PutMapping("/update/{applicationName}")
+    public ResponseEntity<ApplicationDtoResponse> modifyApp(@RequestBody ApplicationDtoRequest applicationDtoRequest, @PathVariable String applicationName) {
+        return ResponseEntity.ok().body(applicationService.updateApplication(applicationName, applicationDtoRequest));
     }
 
-    @DeleteMapping("/delete/{appName}")
-    public ResponseEntity<Boolean> deleteGroup(@PathVariable String appicationName) {
-        return ResponseEntity.ok().body(applicationService.deleteApplication(appicationName));
+    @DeleteMapping("/delete/{applicationName}")
+    public ResponseEntity<Boolean> deleteGroup(@PathVariable String applicationName) {
+        return ResponseEntity.ok().body(applicationService.deleteApplication(applicationName));
     }
 
-    @PostMapping("/addusers/{appName}")
-    public ResponseEntity affectMultiUserToApp(@PathVariable String applicationName, @RequestBody List<String> uuids)
-    {
-        List<UUID> uuidUsers = new ArrayList<>();
-        uuids.forEach(uuid -> uuidUsers.add(UUID.fromString(uuid)));
-        applicationService.assignUserToApplication(uuidUsers, applicationName);
+    @PostMapping("/addGroup/{applicationName}/{uuidGroup}")
+    public ResponseEntity affectMultiUserToApp(@PathVariable String applicationName, @PathVariable String uuidGroup) {
+        applicationService.assignGroupToApplication(UUID.fromString(uuidGroup), applicationName);
         return ResponseEntity.ok().body("Users affected successfully to application " + applicationName);
     }
 
-    @PostMapping("/removemultiuser/{appName}")
-    public ResponseEntity removeMultiUserFromApp(@PathVariable String applicationName, @RequestBody List<String> uuids)
-    {
-        List<UUID> uuidUsers = new ArrayList<>();
-        uuids.forEach(uuid -> uuidUsers.add(UUID.fromString(uuid)));
-        applicationService.removeMultiMemberFromApp(uuidUsers, applicationName);
+    @PostMapping("/removeGroup/{applicationName}/{uuidGroup}")
+    public ResponseEntity removeMultiUserFromApp(@PathVariable String applicationName, @PathVariable String uuidGroup) {
+        applicationService.removeGroupFromApplication(UUID.fromString(uuidGroup), applicationName);
         return ResponseEntity.ok().body("Users removed successfully from group" + applicationName);
     }
 }

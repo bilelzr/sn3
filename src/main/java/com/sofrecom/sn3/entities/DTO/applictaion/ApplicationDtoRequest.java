@@ -1,17 +1,29 @@
 package com.sofrecom.sn3.entities.DTO.applictaion;
 
+import com.sofrecom.sn3.entities.DTO.group.GroupDtoRequest;
+
 public class ApplicationDtoRequest {
 
     private String applicationName;
 
     private String applicanDescription;
 
+    private GroupDtoRequest group;
+
+    public ApplicationDtoRequest() {
+    }
+
+    public ApplicationDtoRequest(String applicationName, String applicanDescription, GroupDtoRequest group) {
+        this.applicationName = applicationName;
+        this.applicanDescription = applicanDescription;
+        this.group = group;
+    }
+
     public String getApplicationName() {
         return applicationName;
     }
 
-    public ApplicationDtoRequest(String applicanDescription, String applicationName) {
-        this.applicanDescription = applicanDescription;
+    public void setApplicationName(String applicationName) {
         this.applicationName = applicationName;
     }
 
@@ -23,10 +35,11 @@ public class ApplicationDtoRequest {
         this.applicanDescription = applicanDescription;
     }
 
-    public ApplicationDtoRequest() {
+    public GroupDtoRequest getGroup() {
+        return group;
     }
 
-    public ApplicationDtoRequest(String applicationName) {
-        this.applicationName = applicationName;
+    public void setGroup(GroupDtoRequest group) {
+        this.group = group;
     }
 }

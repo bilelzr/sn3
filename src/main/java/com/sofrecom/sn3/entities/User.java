@@ -14,6 +14,7 @@ import java.util.*;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @Column(name = "user_pk_id")
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1, initialValue = 1)
     private long userPkId;
 
@@ -37,8 +38,9 @@ public class User implements UserDetails {
     @ManyToMany(mappedBy = "membres") // This avoids duplicate join tables
     private List<Group> groups;
     private UUID uuid;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "porteur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
+
 
     public User(long userPkId, String firstName, String lastName, String email, String password, String phone, Role role, boolean accountNonLocked, List<Group> groups, UUID uuid, List<Task> tasks) {
         this.userPkId = userPkId;
@@ -55,22 +57,6 @@ public class User implements UserDetails {
     }
 
     public User() {
-    }
-
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-    public List<Application> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(List<Application> applications) {
-        this.applications = applications;
     }
 
     public User(long userPkId, String firstName, String lastName, String email, String password, String phone, Role role, boolean accountNonLocked) {
@@ -117,6 +103,22 @@ public class User implements UserDetails {
         this.accountNonLocked = accountNonLocked;
         this.groups = groups;
         this.uuid = uuid;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
     public long getUserPkId() {
@@ -216,6 +218,10 @@ public class User implements UserDetails {
         return accountNonLocked;
     }
 
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
@@ -224,10 +230,6 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public void setAccountNonLocked(boolean accountNonLocked) {
-        this.accountNonLocked = accountNonLocked;
     }
 
     @Override

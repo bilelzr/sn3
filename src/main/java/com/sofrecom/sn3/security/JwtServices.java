@@ -9,6 +9,7 @@ public interface JwtServices {
     String generateToken(UserDetails userDetails);
 
     boolean isTokenValid(String token, UserDetails userDetails);
-    boolean isTokenExpired(String token) ;
+
+    boolean isTokenExpired(String token);
 
 }

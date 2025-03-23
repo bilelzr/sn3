@@ -1,6 +1,6 @@
 package com.sofrecom.sn3.entities;
+
 import jakarta.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "application")

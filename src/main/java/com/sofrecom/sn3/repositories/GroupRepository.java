@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
 public interface GroupRepository extends JpaRepository<Group, Long> {
 
     @Query("select group from Group group where group.groupName ilike :groupName")
     Group findByName(@Param("groupName") String groupName);
+
+    Group findByUuid(UUID uuid);
 }

@@ -26,7 +26,7 @@ public class Group {
 
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
-    private List<Application> applications ;
+    private List<Application> applications;
 
     public Group() {
     }

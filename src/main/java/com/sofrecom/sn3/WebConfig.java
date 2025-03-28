@@ -16,10 +16,10 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://127.0.0.1:4200")
+                        .allowedOrigins("*")
                         .allowedMethods(HttpMethod.GET.name(),
                                 HttpMethod.POST.name(),
-                                HttpMethod.DELETE.name(),HttpMethod.OPTIONS.name(),HttpMethod.PATCH.name(),HttpMethod.PUT.name())
+                                HttpMethod.DELETE.name(), HttpMethod.OPTIONS.name(), HttpMethod.PATCH.name(), HttpMethod.PUT.name())
                         .allowedHeaders(HttpHeaders.CONTENT_TYPE,
                                 HttpHeaders.AUTHORIZATION);
             }

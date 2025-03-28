@@ -41,6 +41,8 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "porteur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
 
+    @Column(name = "image_path")
+    private String imagePath;
 
     public User(long userPkId, String firstName, String lastName, String email, String password, String phone, Role role, boolean accountNonLocked, List<Group> groups, UUID uuid, List<Task> tasks) {
         this.userPkId = userPkId;
@@ -253,5 +255,14 @@ public class User implements UserDetails {
 
     public void setGroups(List<Group> groups) {
         this.groups = groups;
+    }
+
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

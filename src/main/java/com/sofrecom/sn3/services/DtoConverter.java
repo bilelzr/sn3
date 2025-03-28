@@ -65,6 +65,7 @@ public class DtoConverter {
         userDto.setRole(user.getRole().toString());
         userDto.setPhone(user.getPhone());
         userDto.setAccountNonLocked(user.isAccountNonLocked());
+        userDto.setImagePath(user.getImagePath());
         return userDto;
     }
 

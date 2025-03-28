@@ -11,22 +11,13 @@ public class UserDto {
     private String role;
     private boolean accountNonLocked;
     private UUID uuid;
+    private String imagePath;
 
 
     public UserDto() {
     }
 
-    public UserDto(String firstName, String lastName, String email, String password, String phone, String role, boolean accountNonLocked) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-        this.role = role;
-        this.accountNonLocked = accountNonLocked;
-    }
-
-    public UserDto(String firstName, String lastName, String email, String password, String phone, String role, boolean accountNonLocked, UUID uuid) {
+    public UserDto(String firstName, String lastName, String email, String password, String phone, String role, boolean accountNonLocked, UUID uuid, String imagePath) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -35,6 +26,7 @@ public class UserDto {
         this.role = role;
         this.accountNonLocked = accountNonLocked;
         this.uuid = uuid;
+        this.imagePath = imagePath;
     }
 
     public UUID getUuid() {
@@ -99,5 +91,14 @@ public class UserDto {
 
     public void setAccountNonLocked(boolean accountNonLocked) {
         this.accountNonLocked = accountNonLocked;
+    }
+
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,8 +36,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteUser(User user) {
-        User userToDelete = userRepository.findByEmail(user.getEmail());
+    public boolean deleteUser(UUID uuid) {
+        User userToDelete = userRepository.findByUuid(uuid);
         if (userToDelete != null) {
             userRepository.delete(userToDelete);
             return true;

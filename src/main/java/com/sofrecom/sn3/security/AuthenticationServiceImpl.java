@@ -46,7 +46,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         userToPersist.setPhone(userDto.getPhone());
         userToPersist.setRole(Role.ADMIN);
         userToPersist.setUuid(UUID.randomUUID());
-
+        userToPersist.setImagePath(userDto.getImagePath());
         userRepository.save(userToPersist);
         String token = jwtServices.generateToken(userToPersist);
         AuthenticationDto authenticationDto = new AuthenticationDto();

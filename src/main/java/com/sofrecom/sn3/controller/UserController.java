@@ -1,6 +1,7 @@
 package com.sofrecom.sn3.controller;
 
 
+import com.sofrecom.sn3.entities.DTO.ApiResponse;
 import com.sofrecom.sn3.entities.DTO.UserDto;
 import com.sofrecom.sn3.security.AuthenticationService;
 import com.sofrecom.sn3.services.UserService;
@@ -8,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/user")
@@ -24,8 +27,7 @@ public class UserController {
     @PostMapping("/add")
     public ResponseEntity addUser(@RequestBody UserDto userDto) {
         authenticationService.signUp(userDto);
-        return ResponseEntity.ok().body("User created successfully");
-    }
+        return ResponseEntity.ok(new ApiResponse("User created successfully"));    }
 
     @GetMapping("/all")
     public ResponseEntity<List<UserDto>> getAllUsers() {
@@ -35,6 +37,12 @@ public class UserController {
     @GetMapping("/findByEmail/{email}")
     public ResponseEntity<UserDto> findByEmail(@PathVariable("email") String email) {
         return ResponseEntity.ok().body(userService.findUserByEmail(email));
+    }
+
+    @DeleteMapping("/delete/{uuid}")
+    public ResponseEntity deleteUser(@PathVariable("uuid") String uuid) {
+        userService.deleteUser(UUID.fromString(uuid));
+        return ResponseEntity.ok(new ApiResponse("User deleted successfully"));
     }
 
 }

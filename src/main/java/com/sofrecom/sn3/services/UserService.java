@@ -12,6 +12,8 @@ public interface UserService {
 
     List<UserDto> findAllUsers();
 
+
+    List<UserDto> findAllNonAdminUsers();
     UserDto findUserByEmail(String email);
 
     boolean deleteUser(UUID uuid);

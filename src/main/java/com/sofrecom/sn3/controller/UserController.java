@@ -34,6 +34,14 @@ public class UserController {
         return ResponseEntity.ok().body(userService.findAllUsers());
     }
 
+
+    @GetMapping("/all/nonadmin")
+    public ResponseEntity<List<UserDto>> getAllNonAdminUsers() {
+        return ResponseEntity.ok().body(userService.findAllNonAdminUsers());
+    }
+
+
+
     @GetMapping("/findByEmail/{email}")
     public ResponseEntity<UserDto> findByEmail(@PathVariable("email") String email) {
         return ResponseEntity.ok().body(userService.findUserByEmail(email));

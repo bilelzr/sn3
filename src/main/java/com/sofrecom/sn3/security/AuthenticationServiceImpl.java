@@ -44,7 +44,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         userToPersist.setFirstName(userDto.getFirstName());
         userToPersist.setLastName(userDto.getLastName());
         userToPersist.setPhone(userDto.getPhone());
-        userToPersist.setRole(Role.ADMIN);
+        userToPersist.setRole(Role.valueOf(userDto.getRole()));
         userToPersist.setUuid(UUID.randomUUID());
         userToPersist.setImagePath(userDto.getImagePath());
         userRepository.save(userToPersist);

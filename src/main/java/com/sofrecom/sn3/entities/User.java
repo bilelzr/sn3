@@ -40,9 +40,9 @@ public class User implements UserDetails {
     private UUID uuid;
     @OneToMany(mappedBy = "porteur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
-
-    @Column(name = "image_path")
+    @Column(name = "image_path", columnDefinition = "TEXT")
     private String imagePath;
+
 
     public User(long userPkId, String firstName, String lastName, String email, String password, String phone, Role role, boolean accountNonLocked, List<Group> groups, UUID uuid, List<Task> tasks) {
         this.userPkId = userPkId;

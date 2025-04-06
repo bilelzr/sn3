@@ -8,7 +8,7 @@ public class ApplicationDtoRequest {
 
     private String applicationName;
 
-    private String applicanDescription;
+    private String applicationDescription;
 
     private UUID uuid;
 
@@ -17,9 +17,9 @@ public class ApplicationDtoRequest {
     public ApplicationDtoRequest() {
     }
 
-    public ApplicationDtoRequest(String applicationName, String applicanDescription, GroupDtoRequest group) {
+    public ApplicationDtoRequest(String applicationName, String applicationDescription, GroupDtoRequest group) {
         this.applicationName = applicationName;
-        this.applicanDescription = applicanDescription;
+        this.applicationDescription = applicationDescription;
         this.group = group;
     }
 
@@ -31,12 +31,12 @@ public class ApplicationDtoRequest {
         this.applicationName = applicationName;
     }
 
-    public String getApplicanDescription() {
-        return applicanDescription;
+    public String getApplicationDescription() {
+        return applicationDescription;
     }
 
-    public void setApplicanDescription(String applicanDescription) {
-        this.applicanDescription = applicanDescription;
+    public void setApplicationDescription(String applicationDescription) {
+        this.applicationDescription = applicationDescription;
     }
 
     public GroupDtoRequest getGroup() {

@@ -12,6 +12,7 @@ import com.sofrecom.sn3.repositories.GroupRepository;
 import com.sofrecom.sn3.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -32,6 +33,7 @@ public class GroupServiceImpl implements GroupService {
         Group group = new Group();
         group.setGroupName(groupDtoRequest.getGroupName());
         group.setUuid(UUID.randomUUID());
+        group.setCreationDate(LocalDate.now());
         groupRepository.save(group);
     }
 
@@ -43,6 +45,7 @@ public class GroupServiceImpl implements GroupService {
             GroupDtoResponse groupDtoResponse = new GroupDtoResponse();
             groupDtoResponse.setGroupName(group.getGroupName());
             groupDtoResponse.setUuid(group.getUuid());
+            groupDtoResponse.setCreationDate(group.getCreationDate());
             groupDtoResponse.setMembres(DtoConverter.convertListUserToDto(group.getMembres()));
             groupDtoResponseList.add(groupDtoResponse);
 

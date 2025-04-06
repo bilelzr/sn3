@@ -2,6 +2,7 @@ package com.sofrecom.sn3.entities.DTO.group;
 
 import com.sofrecom.sn3.entities.DTO.user.UserDto;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,6 +13,8 @@ public class GroupDtoResponse {
     private List<UserDto> membres;
 
     private UUID uuid;
+
+    private LocalDate creationDate;
 
     public GroupDtoResponse() {
     }
@@ -46,4 +49,11 @@ public class GroupDtoResponse {
         this.uuid = uuid;
     }
 
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
 }

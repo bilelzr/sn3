@@ -2,6 +2,7 @@ package com.sofrecom.sn3.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +24,7 @@ public class Group {
     )
     private List<User> membres;
     private UUID uuid;
+    private LocalDate creationDate;
 
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
@@ -74,5 +76,21 @@ public class Group {
 
     public void setMembres(List<User> membres) {
         this.membres = membres;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 }

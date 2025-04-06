@@ -36,6 +36,7 @@ public class DtoConverter {
         GroupDtoResponse dto = new GroupDtoResponse();
         dto.setUuid(group.getUuid());
         dto.setGroupName(group.getGroupName());
+        dto.setCreationDate(group.getCreationDate());
         //dto.setMembres();
         return dto;
     }

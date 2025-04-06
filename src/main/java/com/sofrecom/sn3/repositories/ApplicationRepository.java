@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
 
-    @Query("select application from Application application where application.applicationName ilike :applicatioName")
+    @Query("select application from Application application where application.applicationName ilike :applicationName")
     Application findByName(@Param("applicationName") String applicationName);
 }

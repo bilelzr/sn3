@@ -1,5 +1,6 @@
 package com.sofrecom.sn3.controller;
 
+import com.sofrecom.sn3.entities.DTO.ApiResponse;
 import com.sofrecom.sn3.entities.DTO.group.GroupDtoRequest;
 import com.sofrecom.sn3.entities.DTO.group.GroupDtoResponse;
 import com.sofrecom.sn3.services.GroupService;
@@ -25,7 +26,7 @@ public class GroupController {
     @PostMapping("/add")
     public ResponseEntity addGroup(@RequestBody GroupDtoRequest groupDtoRequest) {
         groupService.addGroup(groupDtoRequest);
-        return ResponseEntity.ok().body("Group created successfully");
+        return ResponseEntity.ok(new ApiResponse("Application created successfully"));
     }
 
     @GetMapping("/all")

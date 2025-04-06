@@ -31,8 +31,9 @@ public class ApplicationServiceImpl implements ApplicationService {
     public void createApplication(ApplicationDtoRequest applicationDtoRequest) {
         Application application = new Application();
         application.setApplicationName(applicationDtoRequest.getApplicationName());
-        application.setApplicationDescription(applicationDtoRequest.getApplicanDescription());
+        application.setApplicationDescription(applicationDtoRequest.getApplicationDescription());
         application.setCreationDate(LocalDate.now());
+        application.setUuid(UUID.randomUUID());
         applicationRepository.save(application);
     }
 
@@ -51,6 +52,7 @@ public class ApplicationServiceImpl implements ApplicationService {
             ApplicationDtoResponse applicationDtoResponse = new ApplicationDtoResponse();
             applicationDtoResponse.setApplicationName(application.getApplicationName());
             applicationDtoResponse.setApplicationDescription(application.getApplicationDescription());
+            applicationDtoResponse.setCreationDate(application.getCreationDate());
             if (application.getGroup() != null) {
                 applicationDtoResponse.setGroup(DtoConverter.convertGroupToDto(application.getGroup()));
             }
@@ -66,7 +68,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         Group group = groupRepository.findByName(applicationDtoRequest.getGroup().getGroupName());
         if (appToModify != null && group != null) {
             appToModify.setApplicationName(applicationDtoRequest.getApplicationName());
-            appToModify.setApplicationDescription(applicationDtoRequest.getApplicanDescription());
+            appToModify.setApplicationDescription(applicationDtoRequest.getApplicationDescription());
             appToModify.setGroup(group);
             applicationRepository.save(appToModify);
             return DtoConverter.convertAppToDto(appToModify);
@@ -91,6 +93,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         if (groupToAffect != null && application != null) {
             application.setGroup(groupToAffect);
             applicationRepository.save(application);
+            return;
         }
         throw new AffectationException("App or group not found");
 

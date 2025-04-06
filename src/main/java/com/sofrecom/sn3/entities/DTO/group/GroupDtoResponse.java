@@ -1,6 +1,6 @@
 package com.sofrecom.sn3.entities.DTO.group;
 
-import com.sofrecom.sn3.entities.DTO.UserDto;
+import com.sofrecom.sn3.entities.DTO.user.UserDto;
 
 import java.util.List;
 import java.util.UUID;

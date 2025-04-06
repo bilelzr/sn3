@@ -1,15 +1,16 @@
 package com.sofrecom.sn3.services;
 
 import com.sofrecom.sn3.entities.Application;
+import com.sofrecom.sn3.entities.DTO.DtoConverter;
 import com.sofrecom.sn3.entities.DTO.applictaion.ApplicationDtoRequest;
 import com.sofrecom.sn3.entities.DTO.applictaion.ApplicationDtoResponse;
 import com.sofrecom.sn3.entities.Group;
 import com.sofrecom.sn3.exceptions.AffectationException;
 import com.sofrecom.sn3.repositories.ApplicationRepository;
 import com.sofrecom.sn3.repositories.GroupRepository;
-import com.sofrecom.sn3.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -31,7 +32,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         Application application = new Application();
         application.setApplicationName(applicationDtoRequest.getApplicationName());
         application.setApplicationDescription(applicationDtoRequest.getApplicanDescription());
-
+        application.setCreationDate(LocalDate.now());
         applicationRepository.save(application);
     }
 

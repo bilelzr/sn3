@@ -1,6 +1,7 @@
 package com.sofrecom.sn3.services;
 
-import com.sofrecom.sn3.entities.DTO.UserDto;
+import com.sofrecom.sn3.entities.DTO.DtoConverter;
+import com.sofrecom.sn3.entities.DTO.user.UserDto;
 import com.sofrecom.sn3.entities.User;
 import com.sofrecom.sn3.entities.enumeration.Role;
 import com.sofrecom.sn3.repositories.UserRepository;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {

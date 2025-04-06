@@ -1,8 +1,8 @@
 package com.sofrecom.sn3.security;
 
-import com.sofrecom.sn3.entities.DTO.AuthenticationDto;
-import com.sofrecom.sn3.entities.DTO.SignInRequest;
-import com.sofrecom.sn3.entities.DTO.UserDto;
+import com.sofrecom.sn3.entities.DTO.auth.AuthenticationDto;
+import com.sofrecom.sn3.entities.DTO.auth.SignInRequest;
+import com.sofrecom.sn3.entities.DTO.user.UserDto;
 
 public interface AuthenticationService {
 

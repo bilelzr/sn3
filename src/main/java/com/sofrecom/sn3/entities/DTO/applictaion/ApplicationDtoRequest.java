@@ -2,11 +2,15 @@ package com.sofrecom.sn3.entities.DTO.applictaion;
 
 import com.sofrecom.sn3.entities.DTO.group.GroupDtoRequest;
 
+import java.util.UUID;
+
 public class ApplicationDtoRequest {
 
     private String applicationName;
 
     private String applicanDescription;
+
+    private UUID uuid;
 
     private GroupDtoRequest group;
 
@@ -41,5 +45,13 @@ public class ApplicationDtoRequest {
 
     public void setGroup(GroupDtoRequest group) {
         this.group = group;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 }

@@ -47,13 +47,13 @@ public class ApplicationController {
     }
 
     @PostMapping("/addGroup/{applicationName}/{uuidGroup}")
-    public ResponseEntity affectMultiUserToApp(@PathVariable String applicationName, @PathVariable String uuidGroup) {
+    public ResponseEntity affectGroupToApplication(@PathVariable String applicationName, @PathVariable String uuidGroup) {
         applicationService.assignGroupToApplication(UUID.fromString(uuidGroup), applicationName);
         return ResponseEntity.ok().body("Users affected successfully to application " + applicationName);
     }
 
     @PostMapping("/removeGroup/{applicationName}/{uuidGroup}")
-    public ResponseEntity removeMultiUserFromApp(@PathVariable String applicationName, @PathVariable String uuidGroup) {
+    public ResponseEntity removeGroupFromApp(@PathVariable String applicationName, @PathVariable String uuidGroup) {
         applicationService.removeGroupFromApplication(UUID.fromString(uuidGroup), applicationName);
         return ResponseEntity.ok().body("Users removed successfully from group" + applicationName);
     }

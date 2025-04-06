@@ -1,7 +1,7 @@
 package com.sofrecom.sn3.controller;
 
-import com.sofrecom.sn3.entities.DTO.SignInRequest;
-import com.sofrecom.sn3.entities.DTO.UserDto;
+import com.sofrecom.sn3.entities.DTO.auth.SignInRequest;
+import com.sofrecom.sn3.entities.DTO.user.UserDto;
 import com.sofrecom.sn3.security.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

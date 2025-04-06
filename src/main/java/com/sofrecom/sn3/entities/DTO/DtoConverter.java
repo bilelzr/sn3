@@ -1,14 +1,13 @@
-package com.sofrecom.sn3.services;
+package com.sofrecom.sn3.entities.DTO;
 
 import com.sofrecom.sn3.entities.Application;
-import com.sofrecom.sn3.entities.DTO.UserDto;
 import com.sofrecom.sn3.entities.DTO.applictaion.ApplicationDtoResponse;
 import com.sofrecom.sn3.entities.DTO.group.GroupDtoResponse;
 import com.sofrecom.sn3.entities.DTO.task.TaskDtoResponse;
+import com.sofrecom.sn3.entities.DTO.user.UserDto;
 import com.sofrecom.sn3.entities.Group;
 import com.sofrecom.sn3.entities.Task;
 import com.sofrecom.sn3.entities.User;
-import com.sofrecom.sn3.entities.enumeration.Role;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +44,8 @@ public class DtoConverter {
         ApplicationDtoResponse dto = new ApplicationDtoResponse();
         dto.setApplicationDescription(application.getApplicationDescription());
         dto.setApplicationName(application.getApplicationName());
+        dto.setUuid(application.getUuid());
+        dto.setCreationDate(application.getCreationDate());
         //dto.setMembres();
         return dto;
     }

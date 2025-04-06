@@ -1,4 +1,4 @@
-package com.sofrecom.sn3.entities.DTO;
+package com.sofrecom.sn3.entities.DTO.user;
 
 import java.util.UUID;
 

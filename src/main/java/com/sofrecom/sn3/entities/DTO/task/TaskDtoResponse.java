@@ -1,6 +1,6 @@
 package com.sofrecom.sn3.entities.DTO.task;
 
-import com.sofrecom.sn3.entities.DTO.UserDto;
+import com.sofrecom.sn3.entities.DTO.user.UserDto;
 import com.sofrecom.sn3.entities.enumeration.Priority;
 
 import java.time.LocalDate;

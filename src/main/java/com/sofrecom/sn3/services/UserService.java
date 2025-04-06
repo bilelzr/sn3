@@ -1,7 +1,6 @@
 package com.sofrecom.sn3.services;
 
-import com.sofrecom.sn3.entities.DTO.UserDto;
-import com.sofrecom.sn3.entities.User;
+import com.sofrecom.sn3.entities.DTO.user.UserDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;

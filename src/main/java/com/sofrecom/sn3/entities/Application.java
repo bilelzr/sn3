@@ -2,6 +2,9 @@ package com.sofrecom.sn3.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
 @Entity
 @Table(name = "application")
 public class Application {
@@ -13,6 +16,8 @@ public class Application {
 
     private String applicationName;
     private String applicationDescription;
+    private UUID uuid;
+    private LocalDate creationDate;
 
     @ManyToOne
     @JoinColumn(name = "group_id", nullable = false)
@@ -62,6 +67,21 @@ public class Application {
     }
 
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
 }
 
 

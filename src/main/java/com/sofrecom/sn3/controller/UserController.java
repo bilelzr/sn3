@@ -2,7 +2,7 @@ package com.sofrecom.sn3.controller;
 
 
 import com.sofrecom.sn3.entities.DTO.ApiResponse;
-import com.sofrecom.sn3.entities.DTO.UserDto;
+import com.sofrecom.sn3.entities.DTO.user.UserDto;
 import com.sofrecom.sn3.security.AuthenticationService;
 import com.sofrecom.sn3.services.UserService;
 import org.springframework.http.ResponseEntity;

@@ -51,7 +51,9 @@ public class ApplicationServiceImpl implements ApplicationService {
             ApplicationDtoResponse applicationDtoResponse = new ApplicationDtoResponse();
             applicationDtoResponse.setApplicationName(application.getApplicationName());
             applicationDtoResponse.setApplicationDescription(application.getApplicationDescription());
-            applicationDtoResponse.setGroup(DtoConverter.convertGroupToDto(application.getGroup()));
+            if (application.getGroup() != null) {
+                applicationDtoResponse.setGroup(DtoConverter.convertGroupToDto(application.getGroup()));
+            }
             appDtoResponseList.add(applicationDtoResponse);
 
         });

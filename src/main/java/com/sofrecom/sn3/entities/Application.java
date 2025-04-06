@@ -20,7 +20,7 @@ public class Application {
     private LocalDate creationDate;
 
     @ManyToOne
-    @JoinColumn(name = "group_id", nullable = false)
+    @JoinColumn(name = "group_id")
     private Group group;
 
 

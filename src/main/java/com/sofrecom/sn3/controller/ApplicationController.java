@@ -1,6 +1,7 @@
 package com.sofrecom.sn3.controller;
 
 
+import com.sofrecom.sn3.entities.DTO.ApiResponse;
 import com.sofrecom.sn3.entities.DTO.applictaion.ApplicationDtoRequest;
 import com.sofrecom.sn3.entities.DTO.applictaion.ApplicationDtoResponse;
 import com.sofrecom.sn3.services.ApplicationService;
@@ -23,11 +24,12 @@ public class ApplicationController {
     @PostMapping("/add")
     public ResponseEntity createApplication(@RequestBody ApplicationDtoRequest applicationDtoRequest) {
         applicationService.createApplication(applicationDtoRequest);
-        return ResponseEntity.ok().body("Application created successfully");
+        return ResponseEntity.ok(new ApiResponse("Application created successfully"));
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<ApplicationDtoResponse>> getAllApplications() {
+
         return ResponseEntity.ok().body(applicationService.getAllApplications());
     }
 
